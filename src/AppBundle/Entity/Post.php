@@ -1,0 +1,182 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: BUI DUC KHANH
+ * Date: 11/12/2015
+ * Time: 3:24 PM
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="tbl_introduce_post")
+ * @Vich\Uploadable
+ */
+class Post{
+    /**
+     * @ORM\Column(name="row_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $name_en;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $name_vi;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $img;
+
+    /**     *
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="img")
+     * @var File
+     */
+    private $img_file;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $img_cover;
+
+    /**     *
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="img_cover")
+     * @var File
+     */
+    private $img_cover_file;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $seo_title_en;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $seo_title_vi;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $seo_desc_en;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $seo_desc_vi;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $short_desc_en;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $short_desc_vi;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $content_en;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $content_vi;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    public $update_datetime;
+
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImgFile(File $image = null)
+    {
+        $this->img_file = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+
+            $this->update_datetime = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getImgFile()
+    {
+        return $this->img_file;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImgCoverFile(File $image = null)
+    {
+        $this->img_cover_file = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+
+            $this->update_datetime = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getImgCoverFile()
+    {
+        return $this->img_cover_file;
+    }
+
+
+    public $name;
+    public $seo_title;
+    public $seo_meta;
+    public $short_desc;
+    public $content;
+    public $url;
+
+    function setLocale($locale)
+    {
+        if ($locale == 'vi')
+        {
+            $this->name = $this->name_vi;
+            $this->seo_title = $this->seo_title_vi;
+            $this->seo_meta = $this->seo_desc_vi;
+            $this->short_desc = $this->short_desc_vi;
+            $this->content = $this->content_vi;
+        }
+        else
+        {
+            $this->name = $this->name_en;
+            $this->seo_title = $this->seo_title_en;
+            $this->seo_meta = $this->seo_desc_en;
+            $this->short_desc = $this->short_desc_en;
+            $this->content = $this->content_en;
+        }
+
+        $this->url = str_replace(' ','-',preg_replace("/[^A-Za-z0-9 ]/", '', $this->name_en));
+    }
+}

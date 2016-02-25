@@ -1,0 +1,72 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set breadcrumb = "news.news_list" %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': breadcrumb }) }}
+
+
+
+    <div class="site-wrapper news-zone">
+        <div class="container-fluid no-padding">
+            {% if NEWS|length > 0 %}
+                <div class="col-xs-12 col-sm-12 col-md-12 top-news" >
+                    <div class="container-fluid no-padding">
+                        <div class="col-xs-12 col-sm-12 col-md-8 news-img-zone">
+                            <a href="{{ path('news_detail', {'id' : NEWS[0].id, 'slug' : NEWS[0].url}) }}">
+                                <img src="{{ cdn }}{{ NEWS[0].img }}" alt="img" />
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 news-desc">
+                            <a href="{{ path('news_detail', {'id' : NEWS[0].id, 'slug' : NEWS[0].url}) }}">
+                                <span class="news-header">{{ NEWS[0].name }}</span>
+                            </a>
+                            <p>{{ NEWS[0].short_desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if NEWS|length > 1 %}
+                <div class="row news-list-zone">
+                    {% for ne in NEWS|slice(1, NEWS|length - 1) %}
+                        <div class="col-xs-12 col-sm-6 col-md-4 no-padding" >
+                            <div class="news-item">
+                                <a href="{{ path('news_detail', {'id' : ne.id, 'slug' : ne.url}) }}">
+                                    <img src="{{ cdn }}{{ ne.img }}" alt="img" class="" />
+                                </a>
+
+                                <div class="news-desc">
+                                    <a href="{{ path('news_detail', {'id' : ne.id, 'slug' : ne.url}) }}">
+                                        <span class="news-header">{{ ne.name }}</span>
+                                    </a>
+                                    <p>{{ ne.short_desc }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="clearer"></div>
+
+            {% if totalPage > 1 %}
+                <div class="news-pagination">
+                    {% for i in 1..(totalPage) %}
+                        {% if page == (totalPage - i + 1) %}
+                            <a href="javascript:void(0)" class="high-light">{{ (totalPage - i + 1) }}</a>
+                        {% else %}
+                            <a href="{{ path('news_list', {'page' : (totalPage - i + 1)}) }}">{{ (totalPage - i + 1) }}</a>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+{% endblock %}

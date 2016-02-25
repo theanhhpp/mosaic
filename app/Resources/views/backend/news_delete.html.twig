@@ -1,0 +1,139 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+
+{% block content %}
+    <h1 class="page-header">Xóa tin tức</h1>
+    <div class="container-fluid">
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.name_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.name_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Trạng thái</label>
+            </div>
+            {% if NEWS.status == 1 %}
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                <p>Hiển thị</p>
+            </div>
+            {% else %}
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                <p>Ẩn</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề trang tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.seo_title_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề trang tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.seo_title_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.seo_desc_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ NEWS.seo_desc_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ NEWS.img }}" class="img-form-small" />
+                <div class="clearer"></div>
+
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả ngắn tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ NEWS.short_desc_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả ngắn tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ NEWS.short_desc_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Nội dung tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ NEWS.content_en|raw }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Nội dung tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ NEWS.content_vi|raw }}
+            </div>
+        </div>
+
+
+
+        {{ form_start(form) }}
+        {{ form_widget(form.id) }}
+
+        <input type="submit" class="btn btn-primary" value="Xóa" onclick="javascript: return confirm('Bạnn chắc chắn muốn xóa tin này ?');" />
+
+        <a href="{{ path('admin_news_list') }}" class="btn btn-primary" >Về danh sách</a>
+        {{ form_end(form) }}
+
+    </div>
+
+    <div class="clearer"></div>
+
+{% endblock %}
+

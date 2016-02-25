@@ -1,0 +1,183 @@
+{% trans_default_domain 'front' %}
+{% extends 'front.html.twig' %}
+
+{% set DATA = appstate.getCommonData() %}
+
+{% set PAGE_SEO_TITLE = PRODUCT.seo_title %}
+{% set PAGE_SEO_DESCRIPTION = PRODUCT.seo_meta %}
+
+{% set breadcrumb = PRODUCT.name %}
+
+{%  block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': breadcrumb }) }}
+
+    <div class="site-wrapper product-zone">
+        <div class="container-fluid no-padding">
+            <div class="col-xs-12 col-sm-7 col-md-8 no-padding">
+                {% if IMAGES is defined %}
+                    <div class="image-indicator">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {% for i in 1..(IMAGES|length) %}
+                                {% if i == 1 %}
+                                    <li data-target='#carousel-main' data-slide-to='{{ (i-1) }}' class='active'>
+                                        <img alt="{{ (i-1) }}" src="{{ cdn }}{{ IMAGES[i-1].img_thumb }}" />
+                                    </li>
+                                {% else %}
+                                    <li data-target='#carousel-main' data-slide-to='{{ (i-1) }}'>
+                                        <img alt="{{ (i-1) }}" src="{{ cdn }}{{ IMAGES[i-1].img_thumb }}" />
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                        <div class="clearer"></div>
+                    </div>
+
+
+                    <div id="carousel-main" data-ride="carousel" data-interval="false" class="carousel slide img-slide-zone ">
+                        <div class="carousel-inner">
+                            {% for i in 1..(IMAGES|length) %}
+                                {% if i == 1 %}
+                                    <div class="item active">
+                                        <img alt="{{ (i-1) }}" src="{{ cdn }}{{ IMAGES[i-1].img }}" class="img-responsive"/>
+                                    </div>
+                                {% else %}
+                                    <div class="item">
+                                        <img alt="{{ (i-1) }}" src="{{ cdn }}{{ IMAGES[i-1].img }}" class="img-responsive"/>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control control-move move-left" href="#carousel-main" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-menu-left "></span>
+                        </a>
+                        <a class="right carousel-control control-move move-right" href="#carousel-main" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </a>
+                    </div>
+
+
+                {% endif %}
+            </div>
+
+            <div class="col-xs-12 col-sm-5 col-md-4 product-info">
+                <span class="product-name">{{ PRODUCT.name }}</span>
+                <span class="product-code">{{ PRODUCT.code }}</span>
+
+                <div class="product-color">
+                    <span class="product-label">{% trans %}product_detail.color{% endtrans %}</span>
+                    <div class="clearer"></div>
+                    <div class="container-fluid no-padding">
+                        {% for pco in PRODUCT.color %}
+                            <div class="col-xs-4 col-sm-4 col-md-4 no-padding">
+                                <span class="color_item" style="background-color: {{ pco.color_code }}"></span>
+                                <span class="color_item_label">{{ pco.name }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="product-info-tab">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#product">{% trans %}product_detail.product{% endtrans %}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#delivery">{% trans %}product_detail.delivery{% endtrans %}</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="product" class="tab-pane fade in active">
+                            <p>{{ PRODUCT.desc }}</p>
+                        </div>
+                        <div id="delivery" class="tab-pane fade">
+                            <p>{{ PRODUCT.deliver }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-social-zone">
+                    <div class="container-fluid no-padding">
+                        <div class="col-xs-6 col-sm-6 col-md-6 no-padding">
+                            <span class="product-label">{% trans %}product_detail.share{% endtrans %}</span>
+                            <div class="social-icon-panel">
+                                <a href="http://www.facebook.com/sharer/sharer.php?u={{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}&title={{ PAGE_SEO_TITLE }}" target="_blank"><span class="icon-facebook"></span></a>
+                                <a href="https://plus.google.com/share?url={{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" target="_blank"><span class="icon-google"></span></a>
+                                <a  href="https://www.instagram.com/davisphanh/" target="_blank"><span class="icon-instagram"></span></a>
+                                <a href="mailto:vtmai88@gmail.com"><span class="icon-message"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 no-padding">
+                            <span class="product-label">{% trans %}product_detail.hotline{% endtrans %}</span>
+                            <span class="product-hotline">093 213 5574</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if RELATED_PRODUCT is defined and RELATED_PRODUCT|length > 0 %}
+        <div class="site-wrapper related-product-zone">
+            <div class="container-fluid no-padding">
+                <span class="related-product-header">{% trans %}product_detail.related_header{% endtrans %}</span>
+                <div class="clearer"></div>
+
+                {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_MOBILE %}
+                    <div id="carousel-related" data-ride="carousel" data-interval="false" class="carousel slide related-product-list">
+                        <div class="carousel-inner">
+                            {% set isFirst = 1 %}
+                            {% for pro in RELATED_PRODUCT %}
+                                {% if isFirst == 1 %}
+                                    {% set isFirst = 0 %}
+                                    <div class="related-product-item item active">
+                                        <a href="{{ path('product_detail', {'id': pro.id, 'slug': pro.url}) }}">
+                                            <img alt="" src="{{ cdn }}{{ pro.img }}" class="img-responsive"/>
+                                            <span class="product-name">{{ pro.name }}</span>
+                                            <span class="product-code">{{ pro.code }}</span>
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="related-product-item item">
+                                        <a href="{{ path('product_detail', {'id': pro.id, 'slug': pro.url}) }}">
+                                            <img alt="" src="{{ cdn }}{{ pro.img }}" class="img-responsive"/>
+                                            <span class="product-name">{{ pro.name }}</span>
+                                            <span class="product-code">{{ pro.code }}</span>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <ol class="carousel-indicators">
+                            {% for i in 1..(RELATED_PRODUCT|length) %}
+                                {% if i == 1 %}
+                                    <li data-target='#carousel-related' data-slide-to='{{ i-1 }}' class='active'></li>
+                                {% else %}
+                                    <li data-target='#carousel-related' data-slide-to='{{ i }}'></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                {% else %}
+                    <ul class="related-product-list">
+                        {% for pro in RELATED_PRODUCT %}
+                            <li>
+                                <div class="related-product-item">
+                                    <a href="{{ path('product_detail', {'id': pro.id, 'slug': pro.url}) }}">
+                                        <img alt="01" src="{{ cdn }}{{ pro.img }}" />
+                                        <span class="product-name">{{ pro.name }}</span>
+                                        <span class="product-code">{{ pro.code }}</span>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

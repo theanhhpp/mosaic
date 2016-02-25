@@ -1,0 +1,243 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% set row_index = 1 %}
+
+{% block content %}
+    <h1 class="page-header">Xóa sản phẩm</h1>
+
+
+    <div class="container-fluid">
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+               {{ PRODUCT.name_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ PRODUCT.name_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mã sản phẩm</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ PRODUCT.code }}
+            </div>
+        </div>
+		
+		<div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Danh mục của sản phẩm</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                {{ PRODUCT.category.name_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Giao nhận tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ PRODUCT.deliver_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Giao nhận tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ PRODUCT.deliver_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả  tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.desc_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.desc_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề seo tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.seo_title_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề seo tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.seo_title_vi }}}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.seo_meta_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ PRODUCT.seo_meta_vi }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ PRODUCT.img }}" class="img-form-small" />
+                <div class="clearer"></div>
+
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Màu của sản phẩm</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="container-fluid">
+                    {% for cl in PRODUCT.color %}
+                        <div class="col-xs-5 col-sm-3 col-md-3">
+
+                            <label>{{ cl.name_en }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Chất liệu của sản phẩm</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="container-fluid">
+                    {% for gl in PRODUCT.glaze %}
+                        <div class="col-xs-5 col-sm-3 col-md-3">
+
+                            <label>{{ gl.name_en }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mẫu mã của sản phẩm</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="container-fluid">
+                    {% for pa in PRODUCT.pattern %}
+                        <div class="col-xs-5 col-sm-3 col-md-3">
+
+                            <label>{{ pa.name_en }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Kích thước của sản phẩm</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="container-fluid">
+                    {% for si in PRODUCT.size %}
+                        <div class="col-xs-5 col-sm-3 col-md-3">
+
+                            <label>{{ si.size_value }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="container-fluid">
+                    {% for img in ProductImages %}
+                        <div class="col-xs-6 col-sm-2 col-md-2">
+                            <div class="project_img_thumb_zone">
+                                <img alt="" src="{{ cdn }}{{ img.img_thumb }}"/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        {{ form_start(form) }}
+        {{ form_widget(form.id) }}
+
+        <input type="submit" class="btn btn-primary" value="Xóa" onclick="javascript: return confirm('Bạn chắc chắn muốn xóa dự án này ?');" />
+
+        <a href="{{ path('admin_product_list') }}" class="btn btn-primary" >Về danh sách</a>
+        {{ form_end(form) }}
+    </div>
+    {{ form_end(form) }}
+
+    <div class="clearer"></div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            if (jQuery.trim($('#error_message').html()).length > 0)
+                $('#error_message').show();
+
+            if (jQuery.trim($('#success_message').html()).length > 0)
+                $('#success_message').show();
+        });
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,131 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': 'Contact Us' }) }}
+
+    <div class="site-wrapper contact-us-zone">
+        <div class="container-fluid no-padding">
+            <div class="row no-margin">
+                {% for flashMessage in app.session.flashbag.get('send-notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage|trans }}
+                    </div>
+                {% endfor %}
+                <div class="col-md-7 col-sm-6" id="contact-us-map"></div>
+                <div class=" col-md-5 col-sm-6 no-padding" id="contact-us-form">
+                    <form action="{{ path('contact_us') }}" method="post" {{ form_enctype(form) }} id="input-form">
+                        {{ form_errors(form) }}
+
+                        {{ form_widget(form.name,{'attr':{'class':'name','placeholder':'contact_us.name'|trans}}) }}
+                        {{ form_widget(form.email,{'attr':{'class':'email','placeholder':'contact_us.email'|trans}}) }}
+                        {{ form_widget(form.subject,{'attr':{'class':'title','placeholder':'contact_us.title'|trans}}) }}
+                        {{ form_widget(form.body,{'attr':{'class':'content','placeholder':'contact_us.content'|trans}}) }}
+
+                        {{ form_rest(form) }}
+
+                        <input type="submit" value="{% trans %}contact_us.send{% endtrans %}" class="btnSend" id="send"/>
+                    </form>
+                </div>
+
+            </div>{## End row ###}
+            <hr/>
+
+            <div class="row no-margin">
+                <div class="col-sm-4 col-md-4 contact-us-link no-padding">
+                    <div class="link-title">
+                            <span class="icon_location">
+                                <img src="{{ asset('img/icon_location.png') }}" alt="icon_location"/>
+                            </span>
+                        <strong>
+                            <a href="#" onclick="changeLocation(20.9777, 105.913);">Base Company:</a>
+                        </strong>
+                    </div>
+                    <ul class="link-detail">
+                        <li>41B Giang Cao - Bat Trang</li>
+                        <li>Email : gshaithanh@gmail.com</li>
+                        <li>Hotline : 19001575</li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-4 contact-us-link no-padding">
+                    <div class="link-title">
+                            <span class="icon_location">
+                                <img src="{{ asset('img/icon_location.png') }}" alt="icon_location"/>
+                            </span>
+                        <strong>
+                            <a href="#" onclick="changeLocation(20.9877, 105.913);">Factory:</a>
+                        </strong>
+                    </div>
+                    <ul class="link-detail">
+                        <li>41B Giang Cao - Bat Trang</li>
+                        <li>Email : gshaithanh@gmail.com</li>
+                        <li>Hotline : 19001575</li>
+                    </ul>
+                </div>
+            </div> {#End row#}
+            <hr/>
+            <div class="contact-us-production-system">
+                <div id="production-system-title">
+                    <span class="icon_location">
+                        <img src="{{ asset('img/icon_location.png') }}" alt="icon_location"/>
+                    </span>
+                    <strong>
+                        <a href="javascript:void(0)">{% trans %}contact_us.sale_system{% endtrans %}:</a>
+                    </strong>
+                </div>
+                <div id="production-system-content" class="row no-margin">
+                    <div class="col-sm-4 col-md-4 base-address">
+                        <a href="#" onclick="changeLocation(20.9897, 105.913);">Base 1:</a>
+                        <ul class="ul-base-address">
+                            <li>41B Giang Cao - Bat Trang</li>
+                            <li>Email : gshaithanh@gmail.com</li>
+                            <li>Hotline : 19001575</li>
+                        </ul>
+                    </div>
+                    <div class="base-address-separate"></div>
+                    <div class="col-sm-4 col-md-4 base-address">
+                        <a href="#" onclick="changeLocation(20.9777, 105.923);">Base 2:</a>
+                        <ul class="ul-base-address">
+                            <li>41B Giang Cao - Bat Trang</li>
+                            <li>Email : gshaithanh@gmail.com</li>
+                            <li>Hotline : 19001575</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>{#End Contact-us-production-system#}
+
+        </div>{### End Container-Fluid ###}
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" language="javascript">
+        // Map, Array Marker
+        var map;
+        var marker;
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            };
+
+            map = new google.maps.Map(document.getElementById('contact-us-map'), mapOptions);
+
+            marker = new google.maps.Marker({map: map});
+
+            changeLocation(20.9777, 105.913);
+        }
+
+        function changeLocation(x, y) {
+            marker.setPosition(new google.maps.LatLng(x, y));
+            map.panTo(marker.getPosition());
+        }
+
+        $(document).ready(function(){
+            initialize();
+        });
+    </script>
+{% endblock %}

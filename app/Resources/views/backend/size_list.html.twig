@@ -1,0 +1,62 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+{% block styles %}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% set row_index = 1 %}
+
+{% block content %}
+	<h1 class="page-header">Danh sách kích thước</h1>
+	
+	<a href="{{ path('admin_size_add') }}" class="btn btn-primary" style="width: 10%; float: right"><h5>Thêm</h5> </a>
+	<div class="clearer"></div>
+	
+	<div class="table-responsive">
+		<table class="table table-striped report-table" id="MainTable">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th class="a_left">Giá trị (mm/inch)</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for size in SIZES %}
+					<tr>
+						<td>{{ row_index }}</td>
+						<td class="a_left">{{ size.size_value }}</td>
+
+						<td>
+							<a href="{{ path('admin_size_edit', {'id': size.id}) }}" >Sửa</a>
+							&nbsp;
+							|
+							&nbsp;
+							<a href="{{ path('admin_size_delete', {'id': size.id}) }}">Xóa</a>
+						</td>
+					</tr>
+					
+					{% set row_index = row_index + 1 %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="clearer"></div>
+	
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+	
+	<script type="text/javascript" language="javascript">
+
+		$(document).on('ready', function () {
+			$('#MainTable').DataTable({ bFilter: false
+										, bInfo: false
+										, "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [2]}]
+			});
+		});
+	</script>
+{% endblock %}
+

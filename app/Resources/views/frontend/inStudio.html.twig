@@ -1,0 +1,70 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': 'Contact Us' }) }}
+    <div class="in-studio-zone" style="background-color: #fffacd">
+        <div class="container-fluid no-padding">
+
+            <div class="row no-margin" id="in-studio-title" >
+                <h1>How Makes It</h1>
+            </div>
+            <!--End title-->
+
+            <div id="in-studio-post1">
+                <div class="clearfix"></div>
+                <div class="container_img">
+                    <div id="img_number1"></div>
+                </div> <!--End #img_number1-->
+                <div id="post_content1" class="row no-margin">
+                    <p class="title_post col-sm-5 col-md-4">Lorem ipsum dolor sit amet consectetur</p>
+                    <p class="main_content col-sm-7 col-md-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Debitis distinctio error placeat sunt unde! Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit voluptate.Debitis distinctio error placeat sunt unde!
+                        Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit voluptate.
+                    </p>
+                </div><!--End #post_content1-->
+                <div class="clear"></div>
+            </div><!-- End in-studio-post1 -->
+
+            <div id="below_number1"></div>
+            <!--End #below_number1-->
+
+            <div id="in-studio-post2">
+                <div class="clearfix"></div>
+                <div class="container_img">
+                    <div id="img_number2"></div>
+                </div><!--End #img_number1-->
+                <div id="post_content2" class="row no-margin">
+                    <p class="title_post col-sm-5 col-md-4">Lorem ipsum dolor sit amet consectetur</p>
+                    <p class="main_content col-sm-7 col-md-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Debitis distinctio error placeat sunt unde! Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit
+                        voluptate.Debitis distinctio error placeat sunt unde! Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit voluptate.
+                    </p>
+                </div><!--End #post_content1-->
+                <div class="clear"></div>
+            </div><!--End in-studio-post2 -->
+
+            <div id="below_number2"></div>
+            <!--End #below_number1-->
+
+            <div id="in-studio-post3">
+                <div class="clearfix"></div>
+                <div class="container_img">
+                    <div id="img_number3"></div>
+                </div><!--End #img_number1-->
+                <div id="post_content3" class="row no-margin">
+                    <p class="title_post col-sm-5 col-md-4">Lorem ipsum dolor sit amet consectetur</p>
+                    <p class="main_content col-sm-7 col-md-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis distinctio error placeat sunt unde!
+                        Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit voluptate.Debitis distinctio error placeat sunt unde!
+                        Adipisci, aut est eum expedita in incidunt labore minus nam, nisi repellat totam, ullam velit voluptate.
+                    </p>
+                </div><!--End #post_content1-->
+                <div class="clear"></div>
+            </div>
+            <!--End in-studio-post3 -->
+
+        </div>
+        <!--End container-fluid -->
+    </div>
+{% endblock %}

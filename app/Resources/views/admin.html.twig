@@ -1,0 +1,88 @@
+{% trans_default_domain "admin" %}
+{% extends 'base.html.twig' %}
+
+{% block seo %}
+    {% if PAGE_SEO_TITLE is defined %}
+        <title>{{ PAGE_SEO_TITLE }}</title>
+    {% else %}
+        <title>TH Mosaic</title>
+    {% endif %}
+
+    {% if PAGE_SEO_DESCRIPTION is defined %}
+        <meta name="description" content="{{ PAGE_SEO_DESCRIPTION }}">
+    {% else %}
+        <meta name="description" content="TH Mosaic">
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {% block styles %}
+    {% endblock %}
+{% endblock %}
+
+
+{% block body %}
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TH-Mosaic</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('admin_logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="admin_news_list"><a href="{{ path('admin_news_list') }}">Quản lý tin tức</a></li>
+                    <li class="admin_product_list"><a href="{{ path('admin_product_list') }}">Quản lý sản phẩm</a></li>
+                    <li class="admin_intro_list"><a href="{{ path('admin_intro_list') }}">Quản lý bài viết</a></li>
+                    <li class="admin_project_group_list"><a href="{{ path('admin_project_group_list') }}">Quản lý nhóm dự án</a></li>
+					<li class="admin_project_list"><a href="{{ path('admin_project_list') }}">Quản lý dự án</a></li>
+					<li class="admin_category_list"><a href="{{ path('admin_category_list') }}">Quản lý danh mục</a></li>
+					<li class="admin_glaze_list"><a href="{{ path('admin_glaze_list') }}">Quản lý chất liệu</a></li>
+					<li class="admin_pattern_list"><a href="{{ path('admin_pattern_list') }}">Quản lý mẫu mã</a></li>
+					<li class="admin_color_list"><a href="{{ path('admin_color_list') }}">Quản lý mẫu màu</a></li>
+					<li class="admin_size_list"><a href="{{ path('admin_size_list') }}">Quản lý kích thước</a></li>
+					<li class="admin_config_list"><a href="#">Quản lý cấu hình</a></li>
+					<li class="admin_contact_list"><a href="{{ path('admin_contact_list') }}">Liên hệ khách hàng</a></li>
+					<li class="admin_pwd_list"><a href="{{ path('admin_change_pwd') }}">Đổi mật khẩu</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript" language="JavaScript" src="{{ asset('js/main.js') }}"></script>
+	<script type="text/javascript" language="JavaScript">
+		{% if SIDEBAR_LINK_CLASS is defined %}
+			$(document).ready(function(){
+				$(".{{ SIDEBAR_LINK_CLASS }}").addClass('active');
+			});
+		{% endif %}
+	</script>
+    {% block js %}
+    {% endblock %}
+{% endblock %}
+
+

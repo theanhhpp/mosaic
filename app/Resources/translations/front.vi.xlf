@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="vi" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="10001">
+                <source>menu.top.home</source>
+                <target>Trang chủ</target>
+            </trans-unit>
+			<trans-unit id="10002">
+                <source>menu.top.tiles</source>
+                <target>Ngói</target>
+            </trans-unit>
+			<trans-unit id="10003">
+                <source>menu.top.mosaic_art</source>
+                <target>Đồ Khảm</target>
+            </trans-unit>
+			<trans-unit id="10004">
+                <source>menu.top.gallery</source>
+                <target>Dự Án</target>
+            </trans-unit>
+			<trans-unit id="10005">
+                <source>menu.top.th_mosaic</source>
+                <target>Giới Thiệu</target>
+            </trans-unit>
+			<trans-unit id="10006">
+                <source>menu.top.news</source>
+                <target>Tin Tức</target>
+            </trans-unit>
+			<trans-unit id="10007">
+                <source>menu.top.contact_us</source>
+                <target>Liên Hệ</target>
+            </trans-unit>
+			<trans-unit id="10600">
+                <source>menu.top.who_we_are</source>
+                <target>Chúng tôi là ai</target>
+            </trans-unit>
+			<trans-unit id="10601">
+                <source>menu.top.why_choose_us</source>
+                <target>Tại sao chọn chúng tôi</target>
+            </trans-unit>
+			<trans-unit id="10602">
+                <source>menu.top.factory_tour</source>
+                <target>Tham quan xưởng</target>
+            </trans-unit>
+			<trans-unit id="10603">
+                <source>menu.top.in_the_studio</source>
+                <target>Qui trình</target>
+            </trans-unit>
+			<trans-unit id="10008">
+                <source>top.hotline</source>
+                <target>Hỗ trợ</target>
+            </trans-unit>
+			<trans-unit id="10009">
+                <source>top.search</source>
+                <target>Tìm kiếm</target>
+            </trans-unit>
+			<trans-unit id="10010">
+                <source>bottom.about</source>
+                <target>Giới thiệu</target>
+            </trans-unit>
+			<trans-unit id="10011">
+                <source>bottom.factory_tour</source>
+                <target>Tham quan xưởng</target>
+            </trans-unit>
+			<trans-unit id="10012">
+                <source>bottom.press_media</source>
+                <target>Tin tức</target>
+            </trans-unit>
+			<trans-unit id="10013">
+                <source>bottom.in_studio</source>
+                <target>Qui trình</target>
+            </trans-unit>
+			<trans-unit id="10014">
+                <source>bottom.catalog</source>
+                <target>Dự án</target>
+            </trans-unit>
+			<trans-unit id="10015">
+                <source>bottom.take_a_tour</source>
+                <target>Đăng ký tham quan</target>
+            </trans-unit>
+			<trans-unit id="10016">
+                <source>bottom.delivery_information</source>
+                <target>Thông tin giao nhận</target>
+            </trans-unit>
+			<trans-unit id="10017">
+                <source>bottom.frequently_ask</source>
+                <target>Câu hỏi thường gặp</target>
+            </trans-unit>
+			<trans-unit id="10018">
+                <source>bottom.news_letter</source>
+                <target>Đăng ký nhận tin</target>
+            </trans-unit>
+			<trans-unit id="10019">
+                <source>bottom.enter_email</source>
+                <target>Nhập Email</target>
+            </trans-unit>
+			<trans-unit id="10020">
+                <source>bottom.ok</source>
+                <target>OK</target>
+            </trans-unit>
+			<trans-unit id="10021">
+                <source>bottom.copyright</source>
+                <target>Bản quyền @2015 mosaic.com.vn</target>
+            </trans-unit>
+			<trans-unit id="10022">
+                <source>introduce.detail</source>
+                <target>Chi tiết</target>
+            </trans-unit>
+			<trans-unit id="10023">
+                <source>introduce.design</source>
+                <target>Thiết kế</target>
+            </trans-unit>
+			<trans-unit id="10024">
+                <source>introduce.free</source>
+                <target>Miễn phí</target>
+            </trans-unit>
+			<trans-unit id="10025">
+                <source>about.about_us</source>
+                <target>Giới thiệu</target>
+            </trans-unit>
+			<trans-unit id="10026">
+                <source>about.see_more</source>
+                <target>Xem thêm</target>
+            </trans-unit>
+			<trans-unit id="10027">
+                <source>project.project</source>
+                <target>Dự án</target>
+            </trans-unit>
+			<trans-unit id="10028">
+                <source>project.project_list</source>
+                <target>Các dự án</target>
+            </trans-unit>
+			<trans-unit id="10029">
+                <source>breadcrumb.note</source>
+                <target>Bạn đang ở :</target>
+            </trans-unit>
+            <trans-unit id="10031">
+                <source>category.detail.glaze_types</source>
+                <target>Loại Men</target>
+            </trans-unit>
+            <trans-unit id="10032">
+                <source>category.detail.pattern</source>
+                <target>Họa Tiết</target>
+            </trans-unit>
+            <trans-unit id="10033">
+                <source>category.detail.color</source>
+                <target>Màu</target>
+            </trans-unit>
+			<trans-unit id="10034">
+                 <source>news.news_list</source>
+                 <target>Tin tức</target>
+            </trans-unit>
+			<trans-unit id="10035">
+                 <source>product_detail.color</source>
+                 <target>Màu sắc</target>
+            </trans-unit>
+			<trans-unit id="10036">
+                 <source>product_detail.product</source>
+                 <target>Sản phẩm</target>
+            </trans-unit>
+			<trans-unit id="10037">
+                 <source>product_detail.delivery</source>
+                 <target>Giao nhận</target>
+            </trans-unit>
+			<trans-unit id="10038">
+                 <source>product_detail.share</source>
+                 <target>Chia sẻ</target>
+            </trans-unit>
+			<trans-unit id="10039">
+                 <source>product_detail.hotline</source>
+                 <target>Hotline</target>
+            </trans-unit>
+			<trans-unit id="10040">
+                 <source>product_detail.related_header</source>
+                 <target>Bạn có thể quan tâm</target>
+            </trans-unit>
+			<trans-unit id="10050">
+                 <source>contact_us.name</source>
+                 <target>Tên</target>
+            </trans-unit>
+			<trans-unit id="10051">
+                 <source>contact_us.email</source>
+                 <target>Email</target>
+            </trans-unit>
+			<trans-unit id="10052">
+                 <source>contact_us.title</source>
+                 <target>Tiêu đề</target>
+            </trans-unit>
+			<trans-unit id="10053">
+                 <source>contact_us.content</source>
+                 <target>Nội dung</target>
+            </trans-unit>
+			<trans-unit id="10054">
+                 <source>contact_us.send</source>
+                 <target>Gửi</target>
+            </trans-unit>
+			<trans-unit id="10055">
+                 <source>contact_us.sale_system</source>
+                 <target>Hệ thống phân phối</target>
+            </trans-unit>
+			<trans-unit id="10056">
+                <source>contact.us.sendmail</source>
+                <target>Yêu cầu của bạn đã được gửi thành công, cảm ơn!</target>
+            </trans-unit>
+			<trans-unit id="10400">
+                <source>product.product_list</source>
+                <target>Danh mục sản phẩm</target>
+            </trans-unit>
+            <trans-unit id="10401">
+                <source>product.list.category</source>
+                <target>Danh mục</target>
+            </trans-unit>
+            <trans-unit id="10402">
+                <source>product.list.refined_by</source>
+                <target>Tìm theo</target>
+            </trans-unit>
+            <trans-unit id="10403">
+                <source>product.list.menu.tiles</source>
+                <target>Ngói</target>
+            </trans-unit>
+            <trans-unit id="10404">
+                <source>product.list.menu.mosaic_art</source>
+                <target>Đồ Khảm</target>
+            </trans-unit>
+            <trans-unit id="10405">
+                <source>product.list.menu.glaze_types</source>
+                <target>Loại men</target>
+            </trans-unit>
+            <trans-unit id="10406">
+                <source>product.list.menu.patterns</source>
+                <target>Họa tiết</target>
+            </trans-unit>
+            <trans-unit id="10407">
+                <source>product.list.menu.color</source>
+                <target>Màu sắc</target>
+            </trans-unit>
+			<trans-unit id="10408">
+                <source>product.list.menu.Size</source>
+                <target>Kích thước (mm/inch)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

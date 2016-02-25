@@ -1,0 +1,113 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+ {% set breadcrumb = "menu.top.mosaic_art" %}
+
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': breadcrumb, 'is_breadcrumb_short': true }) }}
+
+    <div class="site-wrapper project-list-top-zone">
+        <h1>ProJect Name</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d</p>
+    </div>
+
+    <div class="site-wrapper project-list-details-zone">
+        <div id="freewall" class="free-wall">
+            {% for pro_de in PROJECT_DETAILS %}
+                <div class="brick">
+                    <img class="project-details-cover-image" src="{{ cdn }}{{ pro_de.img }}" data-toggle="modal" data-target="#myModal" width="100%">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+
+                                <!-- bootstrap carousel -->
+                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+                                    <!-- Indicators -->
+
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+
+                                        <div class="item active srle">
+                                            <img src="{{ asset('upload/sliderThumnail/1.png') }}" alt="1.jpg" class="img-responsive">
+
+                                        </div>
+
+                                        <div class="item">
+                                            <img src="{{ asset('upload/sliderThumnail/2.png') }}" alt="2.jpg" class="img-responsive">
+
+                                        </div>
+
+                                        <div class="item">
+                                            <img src="{{ asset('upload/sliderThumnail/3.png') }}" alt="3.jpg" class="img-responsive">
+
+                                        </div>
+
+                                        <div class="item">
+                                            <img src="{{ asset('upload/sliderThumnail/4.png') }}" alt="4.jpg" class="img-responsive">
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <a class="left carousel-control control-move move-left" href="#carousel-example-generic" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                    <a class="right carousel-control control-move move-right" href="#carousel-example-generic" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                    <h3>Mosaic Tile</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
+
+
+                                    <!-- Thumbnails -->
+                                    <ul class="thumbnails-carousel clearfix">
+                                        <li><img src="{{ asset('upload/sliderThumnail/1_tn.png') }}" alt="1_tn.jpg"></li>
+                                        <li><img src="{{ asset('upload/sliderThumnail/2_tn.png') }}" alt="1_tn.jpg"></li>
+                                        <li><img src="{{ asset('upload/sliderThumnail/3_tn.png') }}" alt="1_tn.jpg"></li>
+                                        <li><img src="{{ asset('upload/sliderThumnail/4_tn.png') }}" alt="1_tn.jpg"></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="info">
+                        <h3>{{ pro_de.name }}</h3>
+                        <h5>{{ pro_de.desc }}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" language="JavaScript" src="{{ asset('js/freewall.min.js') }}"></script>
+    <script src="{{ asset('js/thumbnails.carousel.js') }}"></script>
+    <script type="text/javascript">
+        var wall = new Freewall("#freewall");
+        wall.reset({
+            selector: '.brick',
+            animate: true,
+            cellW: 200,
+            cellH: 'auto',
+            onResize: function() {
+                wall.fitWidth();
+            }
+        });
+
+        wall.container.find('.brick img').load(function() {
+            wall.fitWidth();
+        });
+    </script>
+    <script>$(".thumbnails-carousel.not-centered").thumbnailsCarousel({ center: false });</script>
+{% endblock %}

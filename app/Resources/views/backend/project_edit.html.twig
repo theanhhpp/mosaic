@@ -1,0 +1,215 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% set row_index = 1 %}
+
+{% block content %}
+    <h1 class="page-header">Sửa thông tin dự án</h1>
+
+    {{ form_start(form) }}
+    <div class="container-fluid">
+        <div class="row">
+            <label class="col-xs-12-col-sm-12 col-md-6 alert alert-danger" id="error_message" style="display: none">{{ form_errors(form) }}</label>
+        </div>
+
+        <div class="row">
+            <label class="col-xs-12-col-sm-12 col-md-6 alert alert-success" id="success_message" style="display: none">{{ message }}</label>
+        </div>
+
+		{{ form_widget(form.id) }}
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.name_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.name_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả  tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ form_widget(form.desc_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ form_widget(form.desc_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ form.vars.value.img }}" class="img-form-small" />
+                <div class="clearer"></div>
+                {{ form_widget(form.img_file) }}
+            </div>
+        </div>
+		
+		<div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Nhóm dự án</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+				<div class="container-fluid">
+					{% for pg in form.projectGroups %}
+						<div class="col-xs-5 col-sm-3 col-md-3">
+							{{ form_widget(pg) }}
+							<label>{{ form_label(pg) }}</label>
+						</div>
+					{% endfor %}
+				</div>
+            </div>
+        </div>
+		
+		<div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh (500px x 400px)</label>
+				<div class="hidden_file_upload"><input type="file" id="formUpload_file" onchange="uploadProjectImg();" /></div>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+				<div class="container-fluid">
+					{% for img in ProjectImages %}
+						<div class="col-xs-6 col-sm-2 col-md-2">
+							<div class="project_img_thumb_zone">
+								<img alt="" src="{{ cdn }}{{ img.img_thumb }}"/>
+								<span class="img_thumb_remove" onclick="removeProjectImg({{ img.id }}, $(this))"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
+							</div>
+						</div>
+					{% endfor %}
+					
+					
+					<div class="col-xs-6 col-sm-2 col-md-2" id="addImgZone">
+						<span class="add_img_button" onclick="javascript: $('#formUpload_file').trigger('click')">
+							<span id="icon-add" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							<span id="loading_notice" class="loading">Đang tải</span>
+						</span>
+					</div>
+				</div>
+            </div>
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" value="OK" />
+
+        <a href="{{ path('admin_project_list') }}" class="btn btn-primary" >Về danh sách</a>
+    </div>
+    {{ form_end(form) }}
+
+    <div class="clearer"></div>
+	
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            if (jQuery.trim($('#error_message').html()).length > 0)
+                $('#error_message').show();
+
+            if (jQuery.trim($('#success_message').html()).length > 0)
+                $('#success_message').show();
+        });
+		
+		function uploadProjectImg()
+		{
+			var files = $("#formUpload_file").prop("files");
+
+			var data = new FormData();
+			for (var i = 0; i < files.length; i++)
+			{
+				data.append("form[file]", files[i]);
+			}
+			data.append("form[project_row_id]", {{ form.vars.value.id }});
+			
+			$('#icon-add').hide();
+			$('#loading_notice').show();
+			$.ajax({
+				url: "{{ path('admin_project_upload') }}",
+				type: 'POST',
+				data: data,
+				cache: false,
+				processData: false, // Don't process the files
+				contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+				dataType: 'json',
+				success: function(data, textStatus, jqXHR)
+				{
+					if (data.id > 0)
+					{
+						var cdn = "{{ cdn}}";
+						
+						var content = '<div class="col-xs-6 col-sm-2 col-md-2"><span class="project_img_thumb_zone"><img alt="" src="' + cdn + data.img_thumb + '"/><span class="img_thumb_remove" onclick="removeProjectImg(' + data.id + ', $(this))"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></span></div>';
+						
+						$(content).insertBefore("#addImgZone");
+					}
+					else if (data.id == 0)
+					{
+						alert('Upload không thành công do thông tin dự án không đúng! Có thể đã bị xóa hoặc thay đổi trong quá trình upload');
+					}
+					else if (data.id == -2)
+					{
+						alert('File không đúng ảnh jpg, jpeg, gif, png! Cũng có thể quá trình upload bị lỗi đường truyền');
+					}
+					else 
+					{
+						alert('Upload không thành công! Xin hãy thử lại hoặc liên hệ kỹ thuật để được hỗ trợ');
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown)
+				{
+					alert('Upload không thành công! Xin hãy thử lại hoặc liên hệ kỹ thuật để được hỗ trợ');
+				}
+				,complete: function(){
+					$('#icon-add').show();
+					$('#loading_notice').hide();
+				}
+			});
+		}
+		
+		function removeProjectImg(id, obj)
+		{
+			if (confirm('Bạn chắc chắn muốn xóa ảnh này ?'))
+			{				
+				$.ajax({
+					url: "{{ path('admin_project_remove_upload') }}/" + id,
+					type: 'POST',
+					data: {},
+					cache: false,
+					processData: false, // Don't process the files
+					contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+					dataType: 'json',
+					success: function(data, textStatus, jqXHR)
+					{
+						if (data.id > 0)
+							$(obj).parent().parent().remove();
+					},
+					error: function(jqXHR, textStatus, errorThrown){}
+					,complete: function(){}
+				});
+			
+			}
+		}
+    </script>
+{% endblock %}
+

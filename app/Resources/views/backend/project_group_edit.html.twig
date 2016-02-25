@@ -1,0 +1,142 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% set row_index = 1 %}
+
+{% block content %}
+    <h1 class="page-header">Cập nhật nhóm dự án</h1>
+
+    {{ form_start(form) }}
+    <div class="container-fluid">
+        <div class="row">
+            <label class="col-xs-12-col-sm-12 col-md-6 alert alert-danger" id="error_message" style="display: none">{{ form_errors(form) }}</label>
+        </div>
+
+        <div class="row">
+            <label class="col-xs-12-col-sm-12 col-md-6 alert alert-success" id="success_message" style="display: none">{{ message }}</label>
+        </div>
+
+        {{ form_widget(form.id) }}
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.name_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.name_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề trang tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.seo_title_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tiêu đề trang tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.seo_title_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.seo_meta_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Meta description tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ form_widget(form.seo_meta_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ form.vars.value.img }}" class="img-form-small" />
+                <div class="clearer"></div>
+                {{ form_widget(form.img_file) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh cover</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ form.vars.value.img_cover }}" class="img-form-big" />
+                <div class="clearer"></div>
+                {{ form_widget(form.img_cover_file) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả  tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ form_widget(form.desc_en, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mô tả tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                {{ form_widget(form.desc_vi, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+
+        <input type="submit" class="btn btn-primary" value="OK" />
+
+        <a href="{{ path('admin_project_group_list') }}" class="btn btn-primary" >Về danh sách</a>
+    </div>
+
+    {{ form_end(form) }}
+
+    <div class="clearer"></div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            if (jQuery.trim($('#error_message').html()).length > 0)
+                $('#error_message').show();
+
+            if (jQuery.trim($('#success_message').html()).length > 0)
+                $('#success_message').show();
+        });
+    </script>
+{% endblock %}
+

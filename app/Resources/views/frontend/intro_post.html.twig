@@ -1,0 +1,23 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set PAGE_SEO_TITLE = POST.seo_title %}
+{% set PAGE_SEO_DESCRIPTION = POST.seo_meta %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': POST.name }) }}
+
+    <div class="site-wrapper post-detail-zone">
+        <span class="post-image-cover">
+            <img alt="" src="{{ cdn }}{{ POST.img_cover }}" />
+        </span>
+        <div class="clearer"></div>
+
+        <p class="post-content-zone">
+            {{ POST.content|raw }}
+        </p>
+        <div class="clearer"></div>
+    </div>
+
+{% endblock %}

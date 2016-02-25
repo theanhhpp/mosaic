@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>message.update_success</source>
+                <target>Cập nhật thông tin thành công</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>message.information_invalid</source>
+                <target>Cập nhật thông tin không thành công, xin hãy kiểm tra lại</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>message.change_password_success</source>
+                <target>Thay đổi mật khẩu thành công</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

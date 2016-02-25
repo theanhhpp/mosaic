@@ -1,0 +1,26 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set PAGE_SEO_TITLE = NEWS.seo_title %}
+{% set PAGE_SEO_DESCRIPTION = NEWS.seo_meta %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': NEWS.name }) }}
+
+    <div class="site-wrapper post-detail-zone">
+		{% if NEWS.img_cover is defined and NEWS.img_cover != "" %}
+            <span class="post-image-cover">
+                <img alt="" src="{{ cdn }}{{ NEWS.img_cover }}" />
+            </span>
+            <div class="clearer"></div>
+        {% endif %}
+
+
+        <p class="post-content-zone">
+            {{ NEWS.content|raw }}
+        </p>
+        <div class="clearer"></div>
+    </div>
+
+{% endblock %}

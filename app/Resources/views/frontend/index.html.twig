@@ -1,0 +1,151 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% block content %}
+    <div class="container-fluid home-cover" style="background-image: url('/upload/cover.png')">
+        <span class="shadow-top"></span>
+        <span class="home-label">We love making<br/>tile for you</span>
+        <div class="clearer"></div>
+        <span class="shadow-bottom"></span>
+    </div>
+
+    <div class="site-wrapper home-category-zone">
+        <div class="shadow-left"></div>
+        <div class="shadow-right"></div>
+        <div class="home-category-list">
+            <div class="container-fluid">
+                {% for i in 0..3 %}
+                    <div class="col-xs-12 col-sm-6 col-md-6 no-padding">
+                        <a href="{{ path('category_detail', {'id': DATA[MosaicConstant.TILE][i].id, 'slug': DATA[MosaicConstant.TILE][i].url}) }}">
+                            <div class="category-item-zone">
+                                <span class="category-item" style="background-image: url('{{ cdn }}{{ DATA[MosaicConstant.TILE][i].img }}')">
+                                    <span class="category-name">
+                                        {{ DATA[MosaicConstant.TILE][i].name }}
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 no-padding">
+                        <a href="{{ path('category_detail', {'id': DATA[MosaicConstant.MOSAIC][i].id, 'slug': DATA[MosaicConstant.MOSAIC][i].url}) }}">
+                            <div class="category-item-zone">
+                                <span class="category-item" style="background-image: url('{{ cdn }}{{ DATA[MosaicConstant.MOSAIC][i].img }}')">
+                                    <span class="category-name">
+                                        {{ DATA[MosaicConstant.MOSAIC][i].name }}
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="clearer"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid introduce-post">
+        <div class="site-wrapper introduce-post-zone">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4 introduce-post-item-img-zone zone-01">
+                        <div class="introduce-post-item-img" style="background-image: url('{{ cdn }}{{ DATA_CONTENT[MosaicConstant.POST_ID_CONSTRUCTION_CONSULTING].img }}')">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 introduce-post-item" style="background-image: url('{{ cdn }}img/intro02.png');">
+                        <a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_PRODUCT_AS_REQUIRE, 'slug': DATA_CONTENT[MosaicConstant.POST_ID_PRODUCT_AS_REQUIRE].url}) }}">
+                            <span class="introduce-post-header">
+                                {% trans %}introduce.design{% endtrans %}
+                            </span>
+                            <span class="introduce-post-header-border"></span>
+
+                            <span class="introduce-post-content">
+                                {{ DATA_CONTENT[MosaicConstant.POST_ID_PRODUCT_AS_REQUIRE].name }}
+                            </span>
+
+                            <span class="introduce-post-detail">
+                                <span class="introduce-post-detail-text">{% trans %}introduce.detail{% endtrans %}</span>
+                                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 introduce-post-item-img-zone zone-02">
+                        <div class="introduce-post-item-img" style="background-image: url('{{ cdn }}{{ DATA_CONTENT[MosaicConstant.POST_ID_GUARANTEE_POLICY].img }}')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4 introduce-post-item" style="background-image: url('{{ cdn }}img/intro01.png')">
+                        <a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_CONSTRUCTION_CONSULTING, 'slug': DATA_CONTENT[MosaicConstant.POST_ID_CONSTRUCTION_CONSULTING].url}) }}">
+                            <span class="introduce-post-header">
+                                {% trans %}introduce.free{% endtrans %}
+                            </span>
+                            <span class="introduce-post-header-border"></span>
+
+                            <span class="introduce-post-content">
+                                {{ DATA_CONTENT[MosaicConstant.POST_ID_CONSTRUCTION_CONSULTING].name }}
+                            </span>
+
+                            <span class="introduce-post-detail">
+                                <span class="introduce-post-detail-text">{% trans %}introduce.detail{% endtrans %}</span>
+                                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 introduce-post-item-img-zone zone-03">
+                        <div class="introduce-post-item-img" style="background-image: url('{{ cdn }}{{ DATA_CONTENT[MosaicConstant.POST_ID_PRODUCT_AS_REQUIRE].img }}')">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 introduce-post-item" style="background-image: url('{{ cdn }}img/intro03.png')">
+                        <a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_GUARANTEE_POLICY, 'slug': DATA_CONTENT[MosaicConstant.POST_ID_GUARANTEE_POLICY].url}) }}">
+                            <span class="introduce-post-header">
+                                {% trans %}introduce.free{% endtrans %}
+                            </span>
+                            <span class="introduce-post-header-border"></span>
+
+                            <span class="introduce-post-content">
+                                {{ DATA_CONTENT[MosaicConstant.POST_ID_GUARANTEE_POLICY].name }}
+                            </span>
+
+                            <span class="introduce-post-detail">
+                                <span class="introduce-post-detail-text">{% trans %}introduce.detail{% endtrans %}</span>
+                                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid about-us-zone">
+        <div class="site-wrapper about-us-region">
+            <div class="container-fluid">
+                <div class="col-xs-12 col-sm-12 col-md-12 about-us-mheader">
+                    <span class="about-us-header">{% trans %}about.about_us{% endtrans %}</span>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 about-us-video">
+                    <iframe src="https://www.youtube.com/embed/OG2eGVt6v2o" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 about-us-intro">
+                    <span class="about-us-header">{% trans %}about.about_us{% endtrans %}</span>
+
+                    <p class="about-us-content">
+                        {{ DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].short_desc }}
+                    </p>
+
+                    <a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_INTRODUCE, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].url}) }}">
+                        <span class="about-us-detail">
+                            <span class="introduce-post-detail-text">{% trans %}about.see_more{% endtrans %}</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include '/component/project.html.twig' %}
+
+{% endblock %}

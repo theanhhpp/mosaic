@@ -1,0 +1,20 @@
+{% trans_default_domain "front" %}
+{% if not is_breadcrumb_short is defined %}
+    {% set is_breadcrumb_short = true %}
+{% endif %}
+
+    {% if is_breadcrumb_short %}
+        <div class="container-fluid breadcrumb-cover breadcrumb-cover-short" style="background-image: url('/upload/cover.png')">
+    {% else %}
+        <div class="container-fluid breadcrumb-cover" style="background-image: url('/upload/cover.png')">
+    {% endif %}
+            <span class="shadow-top"></span>
+                <span class="site-wrapper breadcrumb-zone" >
+                    {% trans %}breadcrumb.note{% endtrans %}
+                    <span class="breadcrumb-label">
+                        {{ breadcrumb|trans }}
+                    </span>
+                </span>
+            <div class="clearer"></div>
+            <span class="shadow-bottom"></span>
+        </div>

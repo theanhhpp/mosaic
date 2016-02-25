@@ -1,0 +1,43 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set breadcrumb = "menu.top.tiles" %}
+{% set categories = DATA[MosaicConstant.TILE] %}
+{% if CAT_TYPE is defined and CAT_TYPE == MosaicConstant.MOSAIC %}
+    {% set categories = DATA[MosaicConstant.MOSAIC] %}
+    {% set breadcrumb = "menu.top.mosaic_art" %}
+{% endif %}
+
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': breadcrumb, 'is_breadcrumb_short': false }) }}
+
+    <div class="site-wrapper category-zone">
+        <div class="shadow-left"></div>
+        <div class="shadow-right"></div>
+
+        <div class="home-category-list">
+            <div class="container-fluid">
+                {% for category in categories %}
+                    <div class="col-xs-12 col-sm-6 col-md-6 no-padding">
+                        <a href="{{ path('category_detail', {'id': category.id, 'slug': category.url}) }}">
+                            <div class="category-item-zone">
+                                <span class="category-item" style="background-image: url('{{ cdn }}{{ category.img }}')">
+                                    <span class="category-name">
+                                        {{ category.name }}
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="clearer"></div>
+        </div>
+    </div>
+
+    {% include '/component/project.html.twig' %}
+
+{% endblock %}

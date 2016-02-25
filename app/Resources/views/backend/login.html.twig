@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block seo %}
+    <title>TH Mosaic</title>
+    <meta name="description" content="TH Mosaic">
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin_signin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form class="form-signin" action="{{ path('admin_check') }}" method="post">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="username" class="sr-only">Email address</label>
+            <input type="text" id="username" name="_username" class="form-control" placeholder="User name" required autofocus>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="_password" class="form-control" placeholder="Password" required>
+            <div class="checkbox">
+                <label>
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                </label>
+            </div>
+            <!--<input type="hidden" name="_target_path" value="" />-->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+    </div> <!-- /container -->
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

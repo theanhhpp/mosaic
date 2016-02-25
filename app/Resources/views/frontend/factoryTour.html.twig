@@ -1,0 +1,30 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+
+{% block content %}
+    {% include '/component/bread.html.twig' %}
+    <div class="site-wrapper factory-tour-top-zone">
+        <p style="border-bottom: 2px solid "><span style="font-weight: bold">7days per week,</span>we offer a tour to the mosaic factory. You can browse our studio gallery, meet our friendly staff
+        , learn about our company history , observe our title making process firsthand and even to do it by yourself . Tours typically last 60-90 minutes and are best for 8 to adult .
+        Please </p>
+    </div>
+
+    <div class="site-wrapper factory-tour-prices-zone">
+        <div class="col-xs-12 col-sm-6 col-md-6 prices-right-zone">
+            <h2>Factory Tours & Prices</h2>
+            <p>Available 9.00AM - 17.00PM(Monday to Sunday)</p>
+            <p>Booking esstial . Please call 01234 269 888 to make your booking</p>
+            <p>Or email to book a tour : <a href="#"> reception@thmosaic.vn</a></p>
+            <h2>Single Ticket</h2>
+            <p>Adult               <span class="tour-cost">2.5$</span></p>
+            <p>Children            <span class="tour-cost">1.5$</span></p>
+            <h2>Group Ticket</h2>
+            <p>Adult               <span class="tour-cost">2.5$</span></p>
+            <p>Children            <span class="tour-cost">1.5$</span></p>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 prices-right-zone">
+            <img src="{{ asset('upload/factory-tour/01.jpg') }}">
+        </div>
+    </div>
+{% endblock %}

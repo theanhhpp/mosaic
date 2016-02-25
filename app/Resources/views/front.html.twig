@@ -1,0 +1,388 @@
+{% trans_default_domain "front" %}
+{% extends 'base.html.twig' %}
+
+{% block seo %}
+    {% if PAGE_SEO_TITLE is defined %}
+        <title>{{ PAGE_SEO_TITLE }}</title>
+    {% else %}
+        <title>TH Mosaic</title>
+    {% endif %}
+
+    <meta name="format-detection" content="telephone=no">
+
+    <meta property="og:image" content="{{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/upload/fbdefault.png"/>
+    <link rel="image_src" type="image/png"  href="{{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/upload/fbdefault.png" />
+
+    {% if PAGE_SEO_DESCRIPTION is defined %}
+        <meta name="description" content="{{ PAGE_SEO_DESCRIPTION }}">
+    {% else %}
+        <meta name="description" content="TH Mosaic">
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    {% block styles %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid xcontainer">
+        <div class="logo-zone site-wrapper">
+            <div class="clearer"></div>
+        </div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="xHeader">
+            <div class="site-wrapper top-zone">
+                <a href="{{ path('homepage') }}"><span id="topLogo" class="icon-logo"></span></a>
+                <div id="topLogoShadow" class="icon-logo-shadow"></div>
+
+                {% if DATA[MosaicConstant.LOCALE] == 'en' %}
+                    <a href="{{ path('common_lang', {'locale': 'en'}) }}"><span class="icon-en"></span></a>
+
+                    <a href="{{ path('common_lang', {'locale': 'vi'}) }}"><span class="icon-vi icon-lang-inactive"></span></a>
+                {% else %}
+                    <a href="{{ path('common_lang', {'locale': 'en'}) }}"><span class="icon-en icon-lang-inactive"></span></a>
+
+                    <a href="{{ path('common_lang', {'locale': 'vi'}) }}"><span class="icon-vi"></span></a>
+                {% endif %}
+
+                <span class="search-zone" id="searchPanel">
+                    <form name="frmSearch" id="frmSearch" action="{{ path('product_search') }}">
+                        <span class="label-search" onclick="searchProduct()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                        <input type="text" name="txtKeyword" id="txtKeyword" placeholder="{% trans %}top.search{% endtrans %}" />
+                        <input type="hidden" name="hdType" id="hdType" value="0"/>
+                        <input type="hidden" name="hdVal" id="hdVal" value="0"/>
+                    </form>
+                </span>
+
+                <span class="web-hotline-zone">
+                    {% trans %}top.hotline{% endtrans %}
+                    <br/>
+                    <span class="hotline">0932135574</span>
+                </span>
+                <span class="hotline-separator"></span>
+
+                <div class="clearer"></div>
+            </div>
+            <div class="container-fluid menu-top-zone">
+                <div class="site-wrapper menu-top-panel">
+                    <span class="mobile-hotline-zone">
+                        {% trans %}top.hotline{% endtrans %}
+                        <br/>
+                        <span class="hotline">0932135574</span>
+                    </span>
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ path('homepage') }}">{% trans %}menu.top.home{% endtrans %}</a></li>
+                            <li class="dropdown">
+                                {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_DESKTOP %}
+                                    <a href="{{ path('mosaic_tile_list') }}">
+                                        {% trans %}menu.top.tiles{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('mosaic_tile_list') }}">
+                                        {% trans %}menu.top.tiles{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% endif %}
+
+                                <ul class="dropdown-menu">
+                                    {% for category in DATA[MosaicConstant.TILE] %}
+                                        <li><a href="{{ path('category_detail', {'id': category.id, 'slug': category.url}) }}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_DESKTOP %}
+                                    <a href="{{ path('mosaic_art_list') }}">
+                                        {% trans %}menu.top.mosaic_art{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('mosaic_art_list') }}">
+                                        {% trans %}menu.top.mosaic_art{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% endif %}
+                                <ul class="dropdown-menu">
+                                    {% for category in DATA[MosaicConstant.MOSAIC] %}
+                                        <li><a href="{{ path('category_detail', {'id': category.id, 'slug': category.url}) }}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                            <li><a href="{{ path('project_list') }}">{% trans %}menu.top.gallery{% endtrans %}</a></li>
+                            <li class="dropdown">
+                                {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_DESKTOP %}
+                                    <a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_INTRODUCE, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].url}) }}">
+                                        {% trans %}menu.top.th_mosaic{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_INTRODUCE, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].url}) }}">
+                                        {% trans %}menu.top.mosaic_art{% endtrans %}
+                                        <span class="caret"></span>
+                                    </a>
+                                {% endif %}
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_INTRODUCE, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].url}) }}">{% trans %}menu.top.who_we_are{% endtrans %}</a></li>
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_WHY_CHOOSE_US, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_WHY_CHOOSE_US].url}) }}">{% trans %}menu.top.why_choose_us{% endtrans %}</a></li>
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_FACTORY_TOUR, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_FACTORY_TOUR].url}) }}">{% trans %}menu.top.factory_tour{% endtrans %}</a></li>
+                                    <li><a href="{{ path('in_studio') }}">{% trans %}menu.top.in_the_studio{% endtrans %}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ path('news_list') }}">{% trans %}menu.top.news{% endtrans %}</a></li>
+                            <li><a href="{{ path('contact_us') }}">{% trans %}menu.top.contact_us{% endtrans %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+        <div class="container-fluid xfooter">
+            <div class="container-fluid footer-nav-zone">
+                <div class="site-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-3 footer-logo-zone">
+                                <span class="icon-logo-footer"></span>
+                            </div>
+
+                            <div class="col-xs-5 col-sm-3 col-md-3 footer-menu-zone">
+                                <ul class="footer-menu">
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_INTRODUCE, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_INTRODUCE].url}) }}">{% trans %}bottom.about{% endtrans %}</a></li>
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_FACTORY_TOUR, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_FACTORY_TOUR].url}) }}">{% trans %}bottom.factory_tour{% endtrans %}</a></li>
+                                    <li><a href="{{ path('news_list') }}">{% trans %}bottom.press_media{% endtrans %}</a></li>
+                                    <li><a href="{{ path('in_studio') }}">{% trans %}bottom.in_studio{% endtrans %}</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-7 col-sm-3 col-md-3 footer-menu-zone">
+                                <ul class="footer-menu">
+                                    <li><a href="{{ path('product_list') }}">{% trans %}bottom.catalog{% endtrans %}</a></li>
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_FACTORY_TOUR, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_FACTORY_TOUR].url}) }}">{% trans %}bottom.take_a_tour{% endtrans %}</a></li>
+                                    <li><a href="{{ path('introduce_post', {'id': MosaicConstant.POST_ID_DELIVERY_POLICY, 'slug': DATA[MosaicConstant.POST_STATIC][MosaicConstant.POST_ID_DELIVERY_POLICY].url}) }}">{% trans %}bottom.delivery_information{% endtrans %}</a></li>
+                                    <li><a href="#">{% trans %}bottom.frequently_ask{% endtrans %}</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-3 footer-menu-zone">
+                                <span class="news-letter-header">{% trans %}bottom.news_letter{% endtrans %}</span>
+                                <div class="clearer"></div>
+
+                                <span class="news-letter-form">
+                                    <input placeholder="{% trans %}bottom.enter_email{% endtrans %}" type="text" class="news-letter-input" />
+                                    <input type="button" value="{% trans %}bottom.ok{% endtrans %}" class="news-letter-button"/>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright-zone site-wrapper">
+                <span class="copyright">{% trans %}bottom.copyright{% endtrans %}</span>
+
+                <span class="footer-share">
+                    {% if PAGE_SEO_TITLE is defined %}
+                        <a href="http://www.facebook.com/sharer/sharer.php?u={{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}&title={{ PAGE_SEO_TITLE }}" target="_blank"><span class="icon-facebook"></span></a>
+                    {% else %}
+                        <a href="http://www.facebook.com/sharer/sharer.php?u={{ DATA[MosaicConstant.CURRENT_DOMAIN] }}/{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}&title=TH+Mosaic" target="_blank"><span class="icon-facebook"></span></a>
+                    {% endif %}
+                    <a href="https://www.instagram.com/davisphanh/" target="_blank"><span class="icon-instagram"></span></a>
+                    <a href="https://vtmai88.wordpress.com/" target="_blank"><span class="icon-wordpress"></span></a>
+                </span>
+                <div class="clearer"></div>
+            </div>
+
+
+        </div>
+    </div> <!-- /container -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" language="JavaScript" src="{{ asset('js/index.js') }}"></script>
+
+    <script type="text/javascript" language="javascript">
+        var topScroll = 23;
+        var topLogoFix = 16;
+        var offSetLogo = 39;
+        var offSetShadow = 121;
+
+        {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_TABLET %}
+            topScroll = 20;
+            topLogoFix = 11;
+            offSetLogo = 25;
+            offSetShadow = 95;
+        {% endif %}
+
+        {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_DESKTOP or DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_TABLET %}
+            $( window ).scroll(function() {
+                var top = document.body.scrollTop;
+                if (document.documentElement.scrollTop > top)
+                    top = document.documentElement.scrollTop;
+
+                if (top >= topScroll)
+                {
+                    $('#topLogoShadow').hide();
+
+                    $('#topLogo').css('top', topLogoFix);
+                }
+                else
+                {
+                    $('#topLogoShadow').show();
+                    $('#topLogoShadow').css('top', offSetShadow - top);
+                    $('#topLogo').css('top', offSetLogo - top);
+                }
+            });
+        {% endif %}
+
+
+        var suggestTexts=[];
+        var allCategory= [
+            {% for category in DATA[MosaicConstant.TILE] %}
+                {"label":"{{ category.name }}", "value":"{{ category.id }}"},
+            {% endfor %}
+
+            {% for category in DATA[MosaicConstant.MOSAIC] %}
+                {"label":"{{ category.name }}", "value":"{{ category.id }}"},
+            {% endfor %}
+        ];
+        for (var i = 0; i < allCategory.length; ++i) {
+            suggestTexts.push(allCategory[i].label);
+        }
+
+
+        var allGlaze= [
+            {% for glaze in DATA[MosaicConstant.MOSAIC_GLAZE] %}
+                {"label":"{{ glaze.name }}", "value":"{{ glaze.id }}"},
+            {% endfor %}
+        ];
+        for (var i = 0; i < allGlaze.length; ++i) {
+            suggestTexts.push(allGlaze[i].label);
+        }
+
+        var allPattern= [
+            {% for pattern in DATA[MosaicConstant.MOSAIC_PATTERN] %}
+                {"label":"{{ pattern.name }}", "value":"{{ pattern.id }}"},
+            {% endfor %}
+        ];
+        for (var i = 0; i < allPattern.length; ++i) {
+            suggestTexts.push(allPattern[i].label);
+        }
+
+        var allColor= [
+            {% for color in DATA[MosaicConstant.MOSAIC_COLOR] %}
+                {"label":"{{ color.name }}", "value":"{{ color.id }}"},
+            {% endfor %}
+        ];
+        for (var i = 0; i < allColor.length; ++i) {
+            suggestTexts.push(allColor[i].label);
+        }
+
+        var allSize= [
+            {% for size in DATA[MosaicConstant.MOSAIC_SIZE] %}
+                {"label":"{{ size.size_value }}", "value":"{{ size.id }}"},
+            {% endfor %}
+        ];
+        for (var i = 0; i < allSize.length; ++i) {
+            suggestTexts.push(allSize[i].label);
+        }
+
+        {% if DATA[MosaicConstant.DEVICE] == MosaicConstant.DEVICE_DESKTOP %}
+            $( "#txtKeyword" ).autocomplete({
+                source: suggestTexts
+                ,appendTo: '#searchPanel'
+            });
+        {% endif %}
+
+        function searchProduct()
+        {
+            var keyword = jQuery.trim($('#txtKeyword').val()).toLocaleLowerCase();
+            if (keyword.length > 0)
+            {
+                var isOk = false;
+                // Detect category
+                for (var i = 0; i < allCategory.length; ++i) {
+                    if (allCategory[i].label.toLowerCase() == keyword)
+                    {
+                        isOk = true;
+                        $('#hdType').val(1);
+                        $('#hdVal').val(allCategory[i].value);
+                        break;
+                    }
+                }
+
+                // Detect glaze
+                if (!isOk)
+                    for (var i = 0; i < allGlaze.length; ++i) {
+                        if (allGlaze[i].label.toLowerCase() == keyword)
+                        {
+                            isOk = true;
+                            $('#hdType').val(2);
+                            $('#hdVal').val(allGlaze[i].value);
+                            break;
+                        }
+                    }
+
+                // Detect pattern
+                if (!isOk)
+                    for (var i = 0; i < allPattern.length; ++i) {
+                        if (allPattern[i].label.toLowerCase() == keyword)
+                        {
+                            isOk = true;
+                            $('#hdType').val(3);
+                            $('#hdVal').val(allPattern[i].value);
+                            break;
+                        }
+                    }
+
+                // Detect color
+                if (!isOk)
+                    for (var i = 0; i < allColor.length; ++i) {
+                        if (allColor[i].label.toLowerCase() == keyword)
+                        {
+                            isOk = true;
+                            $('#hdType').val(4);
+                            $('#hdVal').val(allColor[i].value);
+                            break;
+                        }
+                    }
+
+                // Detect size
+                if (!isOk)
+                    for (var i = 0; i < allSize.length; ++i) {
+                        if (allSize[i].label.toLowerCase() == keyword)
+                        {
+                            isOk = true;
+                            $('#hdType').val(5);
+                            $('#hdVal').val(allSize[i].value);
+                            break;
+                        }
+                    }
+
+                $('#frmSearch').submit();
+            }
+        }
+    </script>
+    {% block js %}
+    {% endblock %}
+{% endblock %}

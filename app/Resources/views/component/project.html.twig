@@ -1,0 +1,76 @@
+{% trans_default_domain "front" %}
+
+<div class="container-fluid project-zone">
+    <div class="site-wrapper project-region">
+        <span class="project-header">{% trans %}project.project{% endtrans %}</span>
+        <div class="container-fluid project-group-zone">
+            <div class="col-xs-12 col-sm-6 col-md-6 no-padding">
+                <div class="container-fluid">
+                    <div class="col-xs-12 col-sm-12 col-md-12 project-item project-item-01">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[0].id, 'slug': PROJECT_GROUPS[0].url })}}">
+                            <span class=" project-group-img size-01" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[0].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[0].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 project-item project-item-04">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[3].id, 'slug': PROJECT_GROUPS[3].url })}}">
+                            <span  class="project-group-img size-04" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[3].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[3].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 project-item project-item-05">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[4].id, 'slug': PROJECT_GROUPS[4].url })}}">
+                            <span  class="project-group-img size-05" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[4].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[4].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                <div class="container-fluid">
+                    <div class="col-xs-12 col-sm-12 col-md-12 project-item project-item-02">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[1].id, 'slug': PROJECT_GROUPS[1].url })}}">
+                            <span  class="project-group-img size-02" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[1].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[1].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 project-item project-item-06">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[5].id, 'slug': PROJECT_GROUPS[5].url })}}">
+                            <span  class="project-group-img size-06" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[5].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[5].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                <div class="container-fluid">
+                    <div class="col-xs-12 col-sm-12 col-md-12 project-item project-item-03">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[2].id, 'slug': PROJECT_GROUPS[2].url })}}">
+                            <span  class="project-group-img size-03" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[2].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[2].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 project-item project-item-07">
+                        <a href="{{ path('project_details', {'id': PROJECT_GROUPS[6].id, 'slug': PROJECT_GROUPS[6].url })}}">
+                            <span  class="project-group-img size-07" style="background-image: url('{{ cdn }}{{ PROJECT_GROUPS[6].img }}')">
+                                <span class="project-group-name">{{ PROJECT_GROUPS[6].name }}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

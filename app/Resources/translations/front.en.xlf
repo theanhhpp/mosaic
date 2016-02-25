@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>menu.top.home</source>
+                <target>Home</target>
+            </trans-unit>
+			<trans-unit id="2">
+                <source>menu.top.tiles</source>
+                <target>Mosaic Tiles</target>
+            </trans-unit>
+			<trans-unit id="3">
+                <source>menu.top.mosaic_art</source>
+                <target>Mosaic Art</target>
+            </trans-unit>
+			<trans-unit id="4">
+                <source>menu.top.gallery</source>
+                <target>Gallery</target>
+            </trans-unit>
+			<trans-unit id="5">
+                <source>menu.top.th_mosaic</source>
+                <target>TH Mosaic</target>
+            </trans-unit>
+			<trans-unit id="6">
+                <source>menu.top.news</source>
+                <target>News</target>
+            </trans-unit>
+			<trans-unit id="7">
+                <source>menu.top.contact_us</source>
+                <target>Contact Us</target>
+            </trans-unit>
+			<trans-unit id="600">
+                <source>menu.top.who_we_are</source>
+                <target>Who we are</target>
+            </trans-unit>
+			<trans-unit id="601">
+                <source>menu.top.why_choose_us</source>
+                <target>Why choose us</target>
+            </trans-unit>
+			<trans-unit id="602">
+                <source>menu.top.factory_tour</source>
+                <target>Factory tour</target>
+            </trans-unit>
+			<trans-unit id="603">
+                <source>menu.top.in_the_studio</source>
+                <target>In the studio</target>
+            </trans-unit>
+			<trans-unit id="8">
+                <source>top.hotline</source>
+                <target>Hotline</target>
+            </trans-unit>
+			<trans-unit id="9">
+                <source>top.search</source>
+                <target>Search</target>
+            </trans-unit>
+			<trans-unit id="10">
+                <source>bottom.about</source>
+                <target>About</target>
+            </trans-unit>
+			<trans-unit id="11">
+                <source>bottom.factory_tour</source>
+                <target>Factory tours</target>
+            </trans-unit>
+			<trans-unit id="12">
+                <source>bottom.press_media</source>
+                <target>Press &amp; Media</target>
+            </trans-unit>
+			<trans-unit id="13">
+                <source>bottom.in_studio</source>
+                <target>In the studio</target>
+            </trans-unit>
+			<trans-unit id="14">
+                <source>bottom.catalog</source>
+                <target>Catalogs</target>
+            </trans-unit>
+			<trans-unit id="15">
+                <source>bottom.take_a_tour</source>
+                <target>Take the tour</target>
+            </trans-unit>
+			<trans-unit id="16">
+                <source>bottom.delivery_information</source>
+                <target>Delivery information</target>
+            </trans-unit>
+			<trans-unit id="17">
+                <source>bottom.frequently_ask</source>
+                <target>Frequently ask question</target>
+            </trans-unit>
+			<trans-unit id="18">
+                <source>bottom.news_letter</source>
+                <target>NewsLetter</target>
+            </trans-unit>
+			<trans-unit id="19">
+                <source>bottom.enter_email</source>
+                <target>Enter Email</target>
+            </trans-unit>
+			<trans-unit id="20">
+                <source>bottom.ok</source>
+                <target>OK</target>
+            </trans-unit>
+			<trans-unit id="21">
+                <source>bottom.copyright</source>
+                <target>Copyright @2015 mosaic.com.vn</target>
+            </trans-unit>
+			<trans-unit id="22">
+                <source>introduce.detail</source>
+                <target>Detail</target>
+            </trans-unit>
+			<trans-unit id="23">
+                <source>introduce.design</source>
+                <target>Design</target>
+            </trans-unit>
+			<trans-unit id="24">
+                <source>introduce.free</source>
+                <target>Free</target>
+            </trans-unit>
+			<trans-unit id="25">
+                <source>about.about_us</source>
+                <target>About Us</target>
+            </trans-unit>
+			<trans-unit id="26">
+                <source>about.see_more</source>
+                <target>See more</target>
+            </trans-unit>
+			<trans-unit id="27">
+                <source>project.project</source>
+                <target>Project</target>
+            </trans-unit>
+			<trans-unit id="28">
+                <source>project.project_list</source>
+                <target>Project list</target>
+            </trans-unit>
+			<trans-unit id="29">
+                <source>breadcrumb.note</source>
+                <target>Now you are here :</target>
+            </trans-unit>
+            <trans-unit id="31">
+                 <source>category.detail.glaze_types</source>
+                 <target>Glaze Types</target>
+            </trans-unit>
+            <trans-unit id="32">
+                 <source>category.detail.pattern</source>
+                 <target>Patterns</target>
+            </trans-unit>
+            <trans-unit id="33">
+                 <source>category.detail.color</source>
+                 <target>Colors</target>
+            </trans-unit>
+			<trans-unit id="34">
+                 <source>news.news_list</source>
+                 <target>Press &amp; Media</target>
+            </trans-unit>
+			<trans-unit id="35">
+                 <source>product_detail.color</source>
+                 <target>Color</target>
+            </trans-unit>
+			<trans-unit id="36">
+                 <source>product_detail.product</source>
+                 <target>Product</target>
+            </trans-unit>
+			<trans-unit id="37">
+                 <source>product_detail.delivery</source>
+                 <target>Delivery Info</target>
+            </trans-unit>
+			<trans-unit id="38">
+                 <source>product_detail.share</source>
+                 <target>Share</target>
+            </trans-unit>
+			<trans-unit id="39">
+                 <source>product_detail.hotline</source>
+                 <target>Hotline</target>
+            </trans-unit>
+			<trans-unit id="40">
+                 <source>product_detail.related_header</source>
+                 <target>you might also like</target>
+            </trans-unit>
+			<trans-unit id="50">
+                 <source>contact_us.name</source>
+                 <target>Name</target>
+            </trans-unit>
+			<trans-unit id="51">
+                 <source>contact_us.email</source>
+                 <target>Email</target>
+            </trans-unit>
+			<trans-unit id="52">
+                 <source>contact_us.title</source>
+                 <target>Title</target>
+            </trans-unit>
+			<trans-unit id="53">
+                 <source>contact_us.content</source>
+                 <target>Content</target>
+            </trans-unit>
+			<trans-unit id="54">
+                 <source>contact_us.send</source>
+                 <target>Send</target>
+            </trans-unit>
+			<trans-unit id="55">
+                 <source>contact_us.sale_system</source>
+                 <target>Sale System</target>
+            </trans-unit>
+			<trans-unit id="56">
+                <source>contact.us.sendmail</source>
+                <target>Your contact enquiry was successfully sent. Thank you!</target>
+            </trans-unit>
+			<trans-unit id="400">
+                <source>product.product_list</source>
+                <target>Product List</target>
+            </trans-unit>
+            <trans-unit id="401">
+                <source>product.list.category</source>
+                <target>CATEGORIES</target>
+            </trans-unit>
+            <trans-unit id="402">
+                <source>product.list.refined_by</source>
+                <target>REFINED BY</target>
+            </trans-unit>
+            <trans-unit id="403">
+                <source>product.list.menu.tiles</source>
+                <target>Mosaic tiles</target>
+            </trans-unit>
+            <trans-unit id="404">
+                <source>product.list.menu.mosaic_art</source>
+                <target>Mosaic art</target>
+            </trans-unit>
+            <trans-unit id="405">
+                <source>product.list.menu.glaze_types</source>
+                <target>Glaze types</target>
+            </trans-unit>
+            <trans-unit id="406">
+                <source>product.list.menu.patterns</source>
+                <target>Patterns</target>
+            </trans-unit>
+            <trans-unit id="407">
+                <source>product.list.menu.color</source>
+                <target>Color</target>
+            </trans-unit>
+			<trans-unit id="408">
+                <source>product.list.menu.Size</source>
+                <target>Size (mm/inch)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

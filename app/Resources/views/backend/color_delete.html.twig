@@ -1,0 +1,65 @@
+{% trans_default_domain "admin" %}
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">Xóa mẫu màu</h1>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<label class="col-xs-12-col-sm-12 col-md-6 alert alert-danger" id="error_message" style="display: none">{{ form_errors(form) }}</label>
+		</div>
+
+		<div class="row">
+			<label class="col-xs-12-col-sm-12 col-md-6 alert alert-success" id="success_message" style="display: none">{{ message }}</label>
+		</div>
+		
+		
+		<div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng anh</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ COLOR.name_en }}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Tên tiếng việt</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3">
+                {{ COLOR.name_vi }}
+            </div>
+        </div>
+		
+		<div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Mã màu</label>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-3" style="background-color:{{ COLOR.color_code }}">
+                &nbsp;
+            </div>
+        </div>
+
+
+        <div class="row form-group">
+            <div class="col-xs-10 col-sm-4 col-md-3">
+                <label class="control-label">Ảnh</label>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <img alt="" src="{{ cdn }}{{ COLOR.img }}" class="img-form-small" />
+            </div>
+        </div>
+		
+		{{ form_start(form) }}
+			{{ form_widget(form.id) }}
+			
+			<input type="submit" class="btn btn-primary" value="Xóa" onclick="javascript: return confirm('Bạn chắc chắn muốn xóa mẫu màu này ?');" />
+			
+			<a href="{{ path('admin_color_list') }}" class="btn btn-primary" >Về danh sách</a>
+		{{ form_end(form) }}
+		
+	</div>
+	
+	<div class="clearer"></div>
+{% endblock %}

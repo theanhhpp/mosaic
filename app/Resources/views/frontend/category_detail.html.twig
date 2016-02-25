@@ -1,0 +1,125 @@
+{%  trans_default_domain 'front' %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set isFine = false %}
+{% set CATEGORY = null %}
+{% for cat in DATA[MosaicConstant.TILE] %}
+    {% if cat.id == CAT_ID %}
+        {% set CATEGORY = cat %}
+        {% set isFine = true %}
+    {% endif %}
+{% endfor %}
+
+{% if isFine == false %}
+    {% for cat in DATA[MosaicConstant.MOSAIC] %}
+        {% if cat.id == CAT_ID %}
+            {% set CATEGORY = cat %}
+            {% set isFine = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% if isFine == false %}
+    {% set CATEGORY = DATA[MosaicConstant.TILE][0] %}
+{% endif %}
+
+{% set PAGE_SEO_TITLE = CATEGORY.seo_title %}
+{% set PAGE_SEO_DESCRIPTION = CATEGORY.seo_meta %}
+
+{% set colors = DATA[MosaicConstant.MOSAIC_COLOR] %}
+{% set glazes = DATA[MosaicConstant.MOSAIC_GLAZE] %}
+{% set patterns = DATA[MosaicConstant.MOSAIC_PATTERN] %}
+
+{%  block content %}
+
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': CATEGORY.name, 'is_breadcrumb_short': false }) }}
+
+
+    <div class="site-wrapper category-detail-zone">
+        <div class="shadow-left"></div>
+        <div class="shadow-right"></div>
+
+        <div class="home-category-list">
+            <div class="container-fluid">
+                <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                    <span class="category-detail-header-zone">
+                        <span class="category-detail-header">{% trans %}category.detail.glaze_types{% endtrans %}</span>
+                    </span>
+                    <div class="clearer"></div>
+
+                    {% for gla in glazes %}
+                        <div class="col-xs-12 col-sm-12 col-md-12 no-padding">
+                            <a href="{{ path('product_list', {'catId': CATEGORY.id, 'type': 2, 'typeId': gla.id}) }}">
+                                <div class="category-item-zone">
+                                    <span class="category-item-small" style="background-image: url('{{ cdn }}{{ gla.img }}')">
+                                        <span class="category-name longChar">
+                                            {{ gla.name }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-xs-6 col-sm-3 col-md-3 no-padding">
+                     <span class="category-detail-header-zone">
+                         <span class="category-detail-header">{% trans %}category.detail.pattern{% endtrans %}</span>
+                    </span>
+                    <div class="clearer"></div>
+
+                    {% for pat in patterns %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 no-padding">
+                        <a href="{{ path('product_list', {'catId': CATEGORY.id, 'type': 3, 'typeId': pat.id}) }}">
+                            <div class="category-item-zone">
+                                <span class="category-item-small" style="background-image: url('{{ cdn }}{{ pat.img }}')">
+                                    <span class="category-name longChar">
+                                        {{ pat.name }}
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 no-padding">
+                     <span class="category-detail-header-zone">
+                        <span class="category-detail-header">{% trans %}category.detail.color{% endtrans %}</span>
+                    </span>
+                    <div class="clearer"></div>
+
+                    {% for co in colors %}
+                        <div class="col-xs-6 col-sm-6 col-md-6 no-padding">
+                            <a href="{{ path('product_list', {'catId': CATEGORY.id, 'type': 4, 'typeId': co.id}) }}">
+                                <div class="category-item-zone">
+                                    <span class="category-item-smaller" style="background-image: url('{{ cdn }}{{ co.img }}')">
+                                        <span class="category-name longChar">
+                                            {{ co.name }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include '/component/project.html.twig' %}
+
+{% endblock %}
+
+
+{% block js %}
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $('.longChar').each(function(){
+                var tmp = jQuery.trim($(this).text());
+
+                $(this).html(processLongCharacter(tmp, 8));
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set projects = DATA[MosaicConstant.PROJECT] %}
+{% block content %}
+    {% include '/component/bread.html.twig' %}
+    <div class="site-wrapper project-group-zone">
+        <div class="container-fluid">
+            {% for project in projects %}
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <a href="{{ path('project_detail', {'url':project.id+300  }) }}">
+                         <span class="project-group-item" style="background-image: url('{{ cdn }}{{ project.img }}')">
+                             <span class="project-group-name">
+                                 {{ project.name }}
+                             </span>
+                         </span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

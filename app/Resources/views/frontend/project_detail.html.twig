@@ -1,0 +1,110 @@
+{% trans_default_domain "front" %}
+{% extends 'front.html.twig' %}
+{% set DATA = appstate.getCommonData() %}
+
+{% set PAGE_SEO_TITLE = PROJECT_DETAILS.seo_title %}
+{% set PAGE_SEO_DESCRIPTION = PROJECT_DETAILS.seo_meta %}
+
+{% set IsFirstProjectImage = 1 %}
+{% set index = 0 %}
+{% set tmp = 0 %}
+
+{% block content %}
+    {{ include('/component/breadcrumb.html.twig', { 'breadcrumb': PROJECT_DETAILS.name, 'is_breadcrumb_short': true }) }}
+
+    <div class="site-wrapper project-group-detail-zone">
+        <h1>{{ PROJECT_DETAILS.name }} {{ maxInColumn }}</h1>
+        <p>{{ PROJECT_DETAILS.desc }}</p>
+
+        <div class="clearer"></div>
+    </div>
+
+    <div class="site-wrapper project-group-list-zone">
+        <div class="container-fluid no-padding">
+            <div class="row project-group-list-panel">
+                {% for i in 0..2 %}
+                    {% if offSetColumn > i %}
+                        {% set tmp = maxInColumn + 1 %}
+                    {% endif %}
+                    <div class="col-xs-12 col-sm-4 col-md-4 no-padding">
+                        {% for i in 1..tmp %}
+                            {% if PROJECT_DETAILS.projects|length > index %}
+                                {% set IsFirstProjectImage = 1 %}
+                                <div class="project-detail-item">
+                                    <span class="project-img-zone">
+                                        <img class="project-details-cover-image" src="{{ cdn }}{{ PROJECT_DETAILS.projects[index].img }}" data-toggle="modal" data-target="#myModal{{ PROJECT_DETAILS.projects[index].id }}" width="100%">
+                                    </span>
+                                    <!-- Modal -->
+                                    <div class="modal fade project-modal" id="myModal{{ PROJECT_DETAILS.projects[index].id }}" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- bootstrap carousel -->
+                                                <div id="carousel-example-generic{{ PROJECT_DETAILS.projects[index].id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+                                                    <!-- Indicators -->
+
+                                                    <!-- Wrapper for slides -->
+                                                    <div class="carousel-inner">
+                                                        {% for pImg in PROJECT_DETAILS.projects[index].images %}
+                                                            {% if IsFirstProjectImage == 1 %}
+                                                                {% set IsFirstProjectImage = 0 %}
+                                                                <div class="item active srle">
+                                                                    <img src="{{ cdn }}{{ pImg.img }}" alt="" class="img-responsive">
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="item">
+                                                                    <img src="{{ cdn }}{{ pImg.img }}" alt="" class="img-responsive">
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+
+                                                    <!-- Controls -->
+                                                    <a class="left carousel-control control-move move-left" href="#carousel-example-generic{{ PROJECT_DETAILS.projects[index].id }}" role="button" data-slide="prev">
+                                                        <span class="glyphicon glyphicon-menu-left"></span>
+                                                    </a>
+                                                    <a class="right carousel-control control-move move-right" href="#carousel-example-generic{{ PROJECT_DETAILS.projects[index].id }}" role="button" data-slide="next">
+                                                        <span class="glyphicon glyphicon-menu-right"></span>
+                                                    </a>
+                                                    <h3>{{ PROJECT_DETAILS.projects[index].name }}</h3>
+                                                    <p>{{ PROJECT_DETAILS.projects[index].desc }}</p>
+
+                                                    <!-- Thumbnails -->
+                                                    <ul class="thumbnails-carousel clearfix">
+                                                        {% for pImg in PROJECT_DETAILS.projects[index].images %}
+                                                            <li><img src="{{ cdn }}{{ pImg.img_thumb }}" alt=""></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="info">
+                                        <h3>{{ PROJECT_DETAILS.projects[index].name }}</h3>
+                                        <p>{{ PROJECT_DETAILS.projects[index].desc }}</p>
+                                    </div>
+                                    <div class="clearer"></div>
+                                </div>
+                            {% endif %}
+                            {% set index = index + 1 %}
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" language="JavaScript" src="{{ asset('js/thumbnails.carousel.js') }}"></script>
+
+    <script type="text/javascript" language="JavaScript">
+        $(".thumbnails-carousel.not-centered").thumbnailsCarousel({ center: false });
+    </script>
+{% endblock %}
